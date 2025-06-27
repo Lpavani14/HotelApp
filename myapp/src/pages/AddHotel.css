@@ -1,0 +1,35 @@
+.add-hotel-container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.add-hotel-container h2 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.add-hotel-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.add-hotel-container input {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.add-hotel-container button {
+  padding: 12px;
+  background-color: #007bff;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
