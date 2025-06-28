@@ -2,6 +2,11 @@
 import { initializeApp } from "firebase/app";
 import{getAnalytics} from "firebase/analytics";
 import { getAuth, GoogleAuthProvider,signInWithPopup,signOut } from "firebase/auth";
+// import { signInWithGoogle } from './firebase'; // your function
+import { useDispatch } from 'react-redux';
+import { setUser } from "../features/authSlice"; // path to your slice
+import { cleanUser } from "./cleanUser";// 👈 new helper
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyD587_mQTgk-zH_KzxX6Hu4mNnYZWi4K3w",

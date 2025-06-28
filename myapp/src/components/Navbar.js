@@ -15,11 +15,12 @@ const Navbar = () => {
     <nav className="navbar">
       <div className="navbar-logo">BookMyStay</div>
       <ul className="navbar-links">
-        <li><Link to="/home">Home</Link></li>
-        <li><Link to="#">About Us</Link></li>
-        <li><Link to="#">Help Center</Link></li>
-        <li><Link to="/add-hotel">Add Hotel</Link></li>
-      </ul>
+  <li><Link to="/home">Home</Link></li>
+  <li><a href="#about">About Us</a></li>         {/* 👈 anchor link */}
+  <li><a href="#help">Help Center</a></li>       {/* 👈 anchor link */}
+  <li><Link to="/add-hotel">Add Hotel</Link></li>
+</ul>
+
 
       {user && (
         <div className="navbar-profile">
