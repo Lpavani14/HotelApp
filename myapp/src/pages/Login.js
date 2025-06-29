@@ -1,27 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
+import { signInWithPopup } from 'firebase/auth';
 import { auth, provider } from './firebase';
 import { setUser } from '../features/authSlice';
 import { useNavigate } from 'react-router-dom';
 import './Login.css';
-import { cleanUser } from './cleanUser'; // 👈 you need this helper
+import { cleanUser } from './cleanUser';
 
 const Login = () => {
-  const [email, setEmail] = useState('testuser@example.com'); // Dummy email
-  const [password, setPassword] = useState('testpassword123'); // Dummy password
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleEmailLogin = async (e) => {
+  // Set dummy credentials once (you can skip this if you already saved them)
+  useEffect(() => {
+    const dummyEmail = 'lingisettipavani@gmail.com';
+    const dummyPassword = 'pavanirohini';
+    if (!localStorage.getItem('dummyUser')) {
+      localStorage.setItem('dummyUser', JSON.stringify({ email: dummyEmail, password: dummyPassword }));
+    }
+  }, []);
+
+  const handleEmailLogin = (e) => {
     e.preventDefault();
-    try {
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      const cleanedUser = cleanUser(userCredential.user);
-      dispatch(setUser(cleanedUser));
+    const savedUser = JSON.parse(localStorage.getItem('dummyUser'));
+
+    if (savedUser.email === email && savedUser.password === password) {
+      dispatch(setUser({ email })); // You can customize what to store in Redux
       navigate('/home');
-    } catch (error) {
-      alert(error.message);
+    } else {
+      alert('Invalid email or password');
     }
   };
 
