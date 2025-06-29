@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import Home from '../pages/Home';
-import './Navbar.css';
+import './Navbar.css'; // ✅ no need to import Home here
 
 const Navbar = () => {
   const user = useSelector((state) => state.auth.user);
@@ -16,12 +15,11 @@ const Navbar = () => {
     <nav className="navbar">
       <div className="navbar-logo">BookMyStay</div>
       <ul className="navbar-links">
-  <li><Link to="/home">Home</Link></li>
-  <li><a href="#about">About Us</a></li>         {/* 👈 anchor link */}
-  <li><a href="#help">Help Center</a></li>       {/* 👈 anchor link */}
-  <li><Link to="/add-hotel">Add Hotel</Link></li>
-</ul>
-
+        <li><Link to="/home">Home</Link></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#help">Help Center</a></li>
+        <li><Link to="/add-hotel">Add Hotel</Link></li>
+      </ul>
 
       {user && (
         <div className="navbar-profile">

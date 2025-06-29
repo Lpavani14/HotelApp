@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { setSearchFilters } from '../features/hotelSlice';
+import { setSearchFilters, clearFilters } from '../features/hotelSlice';
+import { useNavigate } from 'react-router-dom';
 import './FilterSidebar.css';
 
 const FilterSidebar = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [minPrice, setMinPrice] = useState('');
   const [maxPrice, setMaxPrice] = useState('');
   const [selectedRooms, setSelectedRooms] = useState(null);
@@ -21,6 +24,17 @@ const FilterSidebar = () => {
         type: propertyType,
       })
     );
+    navigate('/home');
+  };
+
+  const handleClearFilters = () => {
+    dispatch(clearFilters());         // 🔁 Reset Redux filter state
+    setMinPrice('');
+    setMaxPrice('');
+    setSelectedRooms(null);
+    setSelectedBeds(null);
+    setPropertyType('');
+    navigate('/home');                // ✅ Navigate back to home
   };
 
   return (
@@ -61,7 +75,7 @@ const FilterSidebar = () => {
       <div className="filter-group">
         <label>Beds</label>
         <div className="filter-options">
-          {[1, 2].map((num) => (
+          {[1, 2, 3, 4, 5, 6].map((num) => (
             <button
               key={num}
               className={selectedBeds === num ? 'active' : ''}
@@ -76,7 +90,7 @@ const FilterSidebar = () => {
       <div className="filter-group">
         <label>Property Type</label>
         <div className="filter-options">
-          {['Home Stay', 'Resort', 'Hotel'].map((type) => (
+          {['Homestay', 'Resort', 'Hotel'].map((type) => (
             <button
               key={type}
               className={propertyType === type ? 'active' : ''}
@@ -88,9 +102,14 @@ const FilterSidebar = () => {
         </div>
       </div>
 
-      <button className="apply-filter" onClick={handleFilter}>
-        Apply Filters
-      </button>
+      <div className="filter-buttons">
+        <button className="apply-filter" onClick={handleFilter}>
+          Apply Filters
+        </button>
+        <button className="clear-filter" onClick={handleClearFilters}>
+          Clear Filters
+        </button>
+      </div>
     </div>
   );
 };

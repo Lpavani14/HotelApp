@@ -10,7 +10,8 @@ const HotelCard = ({ hotel }) => {
       <div className="hotel-info">
         <h4>{hotel.name}</h4>
         <p>{hotel.address}</p>
-        <p>{hotel.beds} Beds  {hotel.baths} Baths</p>
+        <p>{hotel.rooms} Room(s) • {hotel.beds} Bed(s) • {hotel.baths} Bath(s)</p>
+        <p>Type: {hotel.type}</p>
         <p className="price">₹{hotel.price}/night</p>
       </div>
     </div>
