@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import Home from '../pages/Home';
 import './Navbar.css';
 
 const Navbar = () => {
