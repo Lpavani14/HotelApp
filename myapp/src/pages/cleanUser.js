@@ -1,4 +1,4 @@
-// utils/cleanUser.js
+
 export const cleanUser = (user) => {
   if (!user) return null;
 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import './Navbar.css'; // ✅ no need to import Home here
+import './Navbar.css'; 
 
 const Navbar = () => {
   const user = useSelector((state) => state.auth.user);

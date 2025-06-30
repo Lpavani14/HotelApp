@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import HotelCard from '../components/HotelCard';
-import './HomePage.css'; // You can style it separately
+import './HomePage.css'; 
 import { useSelector } from 'react-redux';
 
 const HomePage = () => {
@@ -19,7 +19,7 @@ const HomePage = () => {
         </ul>
       </nav>
 
-      {/* Hotel List (not filtered) */}
+      
       <div className="hotel-list">
         {hotels.map((hotel, index) => (
           <HotelCard key={index} hotel={hotel} />

@@ -13,10 +13,10 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  // Set dummy credentials once (you can skip this if you already saved them)
+  
   useEffect(() => {
-    const dummyEmail = 'lingisettipavani@gmail.com';
-    const dummyPassword = 'pavanirohini';
+    const dummyEmail = 'user@gmail.com';
+    const dummyPassword = 'password123';
     if (!localStorage.getItem('dummyUser')) {
       localStorage.setItem('dummyUser', JSON.stringify({ email: dummyEmail, password: dummyPassword }));
     }
@@ -27,7 +27,7 @@ const Login = () => {
     const savedUser = JSON.parse(localStorage.getItem('dummyUser'));
 
     if (savedUser.email === email && savedUser.password === password) {
-      dispatch(setUser({ email })); // You can customize what to store in Redux
+      dispatch(setUser({ email })); 
       navigate('/home');
     } else {
       alert('Invalid email or password');
@@ -49,7 +49,7 @@ const Login = () => {
     <div className="login-container">
       <h2>Login to BookMyStay</h2>
 
-      {/* Email + Password Login */}
+      
       <form onSubmit={handleEmailLogin}>
         <input
           type="email"
@@ -70,7 +70,7 @@ const Login = () => {
 
       <hr />
 
-      {/* Google Login */}
+
       <button className="google-btn" onClick={handleGoogleLogin}>
         Sign in with Google
       </button>

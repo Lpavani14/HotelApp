@@ -1,9 +1,16 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './HotelCard.css';
 
-const HotelCard = ({ hotel }) => {
+const HotelCard = ({ hotel, index }) => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/book/${index}`);
+  };
+
   return (
-    <div className="hotel-card">
+    <div className="hotel-card" onClick={handleClick}>
       <div className="hotel-image">
         <img src={hotel.image} alt={hotel.name} />
       </div>
