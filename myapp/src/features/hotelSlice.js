@@ -4,6 +4,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   list: [
     {
+      id:'1',
       name: 'Palm Grove Resort',
       address: 'Beach Road, Goa',
       beds: 2,
@@ -14,6 +15,7 @@ const initialState = {
       image: '/images/Hotelimg1.jpg',
     },
     {
+      id:'2',
       name: 'Mountain View Homestay',
       address: 'Ooty Hills, Tamil Nadu',
       beds: 3,
@@ -24,6 +26,7 @@ const initialState = {
       image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=60',
     },
     {
+      id:'3',
       name: 'Taj Hotel',
       address: 'Hyderabad, Telangana',
       beds: 6,
@@ -34,6 +37,7 @@ const initialState = {
       image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=60',
     },
     {
+      id:'4',
       name: 'Desert Dream Stay',
       address: 'Jaisalmer, Rajasthan',
       beds: 2,
@@ -44,6 +48,7 @@ const initialState = {
       image: '/images/Hotelimg2.jpg',
     },
     {
+      id:'5',
       name: 'Backwater Resort',
       address: 'Alleppey, Kerala',
       beds: 3,
@@ -54,6 +59,7 @@ const initialState = {
       image: '/images/Hotelimg3.jpg',
     },
     {
+      id:'6',
       name: 'Snow Valley Hotel',
       address: 'Manali, Himachal Pradesh',
       beds: 4,
@@ -64,6 +70,7 @@ const initialState = {
       image: '/images/Hotelimg1.jpg',
     },
     {
+      id:'7',
       name: 'Green Hills Stay',
       address: 'Coorg, Karnataka',
       beds: 2,
@@ -74,6 +81,7 @@ const initialState = {
       image: 'https://images.unsplash.com/photo-1572120360610-d971b9d7767c?auto=format&fit=crop&w=800&q=60',
     },
     {
+      id:'8',
       name: 'Urban Heights Hotel',
       address: 'Bangalore, Karnataka',
       beds: 5,

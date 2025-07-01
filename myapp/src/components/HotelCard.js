@@ -6,7 +6,7 @@ const HotelCard = ({ hotel, index }) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(`/book/${index}`);
+    navigate(`/book/${hotel.id}`);
   };
 
   return (
