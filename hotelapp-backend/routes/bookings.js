@@ -2,15 +2,6 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../db');
 
-
-router.post('/', (req, res) => {
-  const bookingData = req.body;
-  console.log('Received booking:', bookingData);
-  res.status(200).json({ message: 'Booking successful!' });
-});
-
-
-
 // POST /api/bookings
 router.post('/', async (req, res) => {
   const { name, email, phone, rooms, checkin, checkout, hotel_id } = req.body;
@@ -31,6 +22,7 @@ router.post('/', async (req, res) => {
     res.status(500).json({ message: 'Database error', error: err.message });
   }
 });
+
 // GET /api/bookings/:hotel_id
 router.get('/:hotel_id', async (req, res) => {
   const { hotel_id } = req.params;
@@ -40,14 +32,11 @@ router.get('/:hotel_id', async (req, res) => {
       'SELECT * FROM bookings WHERE hotel_id = $1 ORDER BY created_at DESC',
       [hotel_id]
     );
-    res.status(200).json(result.rows);
+    res.status(200).json({ bookings: result.rows }); // ✅ Fixed: return bookings as an object
   } catch (err) {
     console.error('Error fetching bookings:', err);
     res.status(500).json({ message: 'Failed to fetch bookings', error: err.message });
   }
 });
 
-
-module.exports = router; 
-
-
+module.exports = router;

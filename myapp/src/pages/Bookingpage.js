@@ -19,8 +19,8 @@ const BookingPage = () => {
     try {
       const res = await fetch(`http://localhost:5000/api/bookings/${hotel_id}`);
       const data = await res.json();
-      console.log('Fetched bookings:', data)
-      setBookings(data.bookings);
+      console.log('Fetched bookings:', data);
+      setBookings(data.bookings); // ✅ data.bookings is now defined
     } catch (err) {
       console.error('Error fetching bookings:', err);
     }
@@ -44,7 +44,6 @@ const BookingPage = () => {
       });
       const data = await res.json();
       if (res.ok) {
-        setMessage('Booking successful!');
         fetchBookings(); // Refresh bookings list
       } else {
         setMessage(data.message || 'Booking failed.');
@@ -78,7 +77,7 @@ const BookingPage = () => {
 
       <h3>Previous Bookings</h3>
       <ul>
-        {bookings.map((b, i) => (
+        {Array.isArray(bookings) && bookings.map((b, i) => (
           <li key={i}>
             {b.name} - {b.email} - {b.checkin} to {b.checkout}
           </li>

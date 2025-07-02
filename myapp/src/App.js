@@ -15,7 +15,9 @@ function App() {
         <Route path="/home" element={<Home />} />      {/* After login */}
         <Route path="/add-hotel" element={<AddHotel />} />
         <Route path="/hotels" element={<HotelList />} />
-        <Route path="/book/:hotelId" element={<BookingPage />} />
+        
+        <Route path="/book/:hotel_id" element={<BookingPage />} />
+
 
       </Routes>
     </Router>

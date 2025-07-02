@@ -14,11 +14,35 @@ const SearchPanel = () => {
   const [showCheckIn, setShowCheckIn] = useState(false);
   const [showCheckOut, setShowCheckOut] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
+  const [errors, setErrors] = useState({});
+  const [isValid, setIsValid] = useState(true);
   const dropdownRef = useRef(null);
 
-  const handleSearch = () => {
-    dispatch(setSearchFilters({ destination, rooms, adults, children }));
+  const validateDates = () => {
+    const newErrors = {};
+    const today = new Date().toISOString().split('T')[0];
+
+    if (checkIn && checkIn < today) {
+      newErrors.checkIn = 'Check-in cannot be in the past';
+    }
+
+    if (checkOut && checkIn && checkOut <= checkIn) {
+      newErrors.checkOut = 'Check-out must be after check-in';
+    }
+
+    setErrors(newErrors);
+    setIsValid(Object.keys(newErrors).length === 0);
   };
+
+  const handleSearch = () => {
+    if (isValid) {
+      dispatch(setSearchFilters({ destination, rooms, adults, children, checkIn, checkOut }));
+    }
+  };
+
+  useEffect(() => {
+    validateDates();
+  }, [checkIn, checkOut]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -44,10 +68,7 @@ const SearchPanel = () => {
         <input
           type="date"
           value={checkIn}
-          onChange={(e) => {
-            setCheckIn(e.target.value);
-            setShowCheckIn(false);
-          }}
+          onChange={(e) => setCheckIn(e.target.value)}
           onBlur={() => setShowCheckIn(false)}
           autoFocus
         />
@@ -56,16 +77,14 @@ const SearchPanel = () => {
           {checkIn ? checkIn : 'Check-in'}
         </div>
       )}
+      {errors.checkIn && <div className="error">{errors.checkIn}</div>}
 
       {/* Check-out */}
       {showCheckOut ? (
         <input
           type="date"
           value={checkOut}
-          onChange={(e) => {
-            setCheckOut(e.target.value);
-            setShowCheckOut(false);
-          }}
+          onChange={(e) => setCheckOut(e.target.value)}
           onBlur={() => setShowCheckOut(false)}
           autoFocus
         />
@@ -74,6 +93,7 @@ const SearchPanel = () => {
           {checkOut ? checkOut : 'Check-out'}
         </div>
       )}
+      {errors.checkOut && <div className="error">{errors.checkOut}</div>}
 
       {/* Room dropdown */}
       <div className="dropdown-wrapper" ref={dropdownRef}>
@@ -121,7 +141,9 @@ const SearchPanel = () => {
         )}
       </div>
 
-      <button onClick={handleSearch}>Search</button>
+      <button onClick={handleSearch} disabled={!isValid}>
+        Search
+      </button>
     </div>
   );
 };
